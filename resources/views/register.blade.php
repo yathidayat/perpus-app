@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Masuk — SIMEKAR</title>
+    <title>Daftar Anggota — SIMEKAR</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -71,16 +71,23 @@
             flex-shrink: 0;
         }
 
-        /* Kartu katalog dekoratif di panel kiri */
-        .ledger-card {
-            background-color: rgba(247, 243, 234, 0.05);
-            border: 1px solid rgba(247, 243, 234, 0.18);
-            border-radius: .75rem;
+        /* Checklist manfaat keanggotaan di panel kiri */
+        .benefit-row {
+            display: flex;
+            align-items: flex-start;
+            gap: .85rem;
         }
-        .ledger-card .ledger-row {
-            border-bottom: 1px dashed rgba(247, 243, 234, 0.2);
+        .benefit-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: .5rem;
+            background-color: rgba(247, 243, 234, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: .95rem;
         }
-        .ledger-card .ledger-row:last-child { border-bottom: none; }
 
         /* Panel kanan: form */
         .form-panel {
@@ -88,7 +95,7 @@
         }
 
         .form-card {
-            max-width: 400px;
+            max-width: 460px;
             width: 100%;
         }
 
@@ -126,6 +133,14 @@
             box-shadow: 0 0 0 3px rgba(47, 69, 56, 0.12);
             background-color: var(--card);
             color: var(--fg);
+        }
+
+        select.input-classic {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B6353' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 16px;
         }
 
         .input-group-classic {
@@ -181,46 +196,17 @@
             color: #F7F3EA;
         }
 
-        .btn-outline-classic {
-            background-color: var(--card);
-            border: 1px solid var(--border-c);
-            border-radius: .6rem;
-            padding: .65rem 1rem;
-            font-size: .88rem;
-            font-weight: 500;
-            color: var(--fg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: .5rem;
-            transition: background-color .15s ease, border-color .15s ease;
-        }
-        .btn-outline-classic:hover {
-            background-color: var(--muted);
-            border-color: var(--border-c);
-            color: var(--fg);
-        }
-
-        .divider-text {
-            display: flex;
-            align-items: center;
-            gap: .75rem;
-            color: rgba(43,38,32,.45);
-            font-size: .78rem;
-        }
-        .divider-text::before, .divider-text::after {
-            content: "";
-            flex: 1;
-            height: 1px;
-            background-color: var(--border-c);
-        }
-
         .link-accent {
             color: var(--primary);
             font-weight: 600;
             text-decoration: none;
         }
         .link-accent:hover { color: var(--accent); }
+
+        .password-hint {
+            font-size: .76rem;
+            color: rgba(43,38,32,.5);
+        }
 
         @media (min-width: 992px) {
             .split-screen { min-height: 100vh; }
@@ -233,9 +219,9 @@
     <div class="container-fluid p-0">
         <div class="row g-0 split-screen">
 
-            <!-- PANEL KIRI: Identitas -->
+            <!-- PANEL KIRI: Identitas & Manfaat -->
             <div class="col-lg-5 brand-panel paper-texture d-none d-lg-flex flex-column justify-content-between p-5">
-                <a href="#" class="d-flex align-items-center gap-3 text-decoration-none position-relative" style="z-index:1;">
+                <a href="{{ url('/') }}" class="d-flex align-items-center gap-3 text-decoration-none position-relative" style="z-index:1;">
                     <span class="logo-badge">S</span>
                     <span class="lh-sm">
                         <span class="d-block font-display fs-5 fw-semibold text-white">SIMEKAR</span>
@@ -245,31 +231,40 @@
 
                 <div class="position-relative" style="z-index:1;">
                     <span class="badge rounded-pill mb-4" style="background-color: rgba(247,243,234,.12); color: rgba(247,243,234,.85); font-size:.72rem; font-weight:600; letter-spacing:.06em; padding:.4rem .9rem;">
-                        Kartu Anggota Digital
+                        Kartu Anggota Baru
                     </span>
-                    <h1 class="font-display display-5 mb-3" style="line-height:1.2;">Selamat datang kembali di rak Anda.</h1>
+                    <h1 class="font-display display-5 mb-3" style="line-height:1.2;">Buat kartu anggota Anda sendiri.</h1>
                     <p style="color: rgba(247,243,234,.65); max-width: 26rem;">
-                        Masuk untuk melanjutkan peminjaman, memperpanjang buku, dan menelusuri koleksi terbaru perpustakaan.
+                        Daftar sekali, akses seluruh koleksi fisik dan digital perpustakaan SMA Negeri 1 Mekarsari.
                     </p>
 
-                    <div class="ledger-card p-4 mt-5">
-                        <div class="ledger-row d-flex justify-content-between py-2">
-                            <span style="color: rgba(247,243,234,.6); font-size:.82rem;">Judul tersedia</span>
-                            <span class="font-display fw-semibold">12.480</span>
+                    <div class="d-flex flex-column gap-4 mt-5">
+                        <div class="benefit-row">
+                            <span class="benefit-icon"><i class="bi bi-book-half"></i></span>
+                            <div>
+                                <p class="fw-semibold mb-1">Pinjam hingga 3 judul sekaligus</p>
+                                <p class="small mb-0" style="color: rgba(247,243,234,.6);">Masa pinjam 14 hari, bisa diperpanjang satu kali.</p>
+                            </div>
                         </div>
-                        <div class="ledger-row d-flex justify-content-between py-2">
-                            <span style="color: rgba(247,243,234,.6); font-size:.82rem;">Anggota aktif</span>
-                            <span class="font-display fw-semibold">3.2K+</span>
+                        <div class="benefit-row">
+                            <span class="benefit-icon"><i class="bi bi-qr-code"></i></span>
+                            <div>
+                                <p class="fw-semibold mb-1">Kartu anggota digital</p>
+                                <p class="small mb-0" style="color: rgba(247,243,234,.6);">Cukup tunjukkan kode QR di konter peminjaman.</p>
+                            </div>
                         </div>
-                        <div class="d-flex justify-content-between py-2">
-                            <span style="color: rgba(247,243,234,.6); font-size:.82rem;">Masa pinjam standar</span>
-                            <span class="font-display fw-semibold">14 hari</span>
+                        <div class="benefit-row">
+                            <span class="benefit-icon"><i class="bi bi-bell"></i></span>
+                            <div>
+                                <p class="fw-semibold mb-1">Pengingat otomatis</p>
+                                <p class="small mb-0" style="color: rgba(247,243,234,.6);">Notifikasi sebelum tanggal jatuh tempo pengembalian.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <p class="small mb-0 position-relative" style="color: rgba(247,243,234,.45); z-index:1;">
-                    © {{ date('Y') }} SIMEKAR — SMA Negeri 1 Mekarsari.
+                    © 2026 SIMEKAR — SMA Negeri 1 Mekarsari.
                 </p>
             </div>
 
@@ -278,7 +273,7 @@
                 <div class="form-card">
 
                     <!-- Logo tampil di mobile saja -->
-                    <a href="#" class="d-flex d-lg-none align-items-center gap-3 text-decoration-none mb-5">
+                    <a href="{{ url('/') }}" class="d-flex d-lg-none align-items-center gap-3 text-decoration-none mb-5">
                         <span class="logo-badge" style="background-color: var(--primary); color: var(--bg);">S</span>
                         <span class="lh-sm">
                             <span class="d-block font-display fs-5 fw-semibold" style="color: var(--fg);">SIMEKAR</span>
@@ -287,43 +282,72 @@
                     </a>
 
                     <span class="stamp-badge mb-4">
-                        <i class="bi bi-journal-bookmark"></i> Masuk Anggota
+                        <i class="bi bi-person-plus"></i> Pendaftaran Anggota
                     </span>
-                    <h2 class="font-display display-6 mb-2">Masuk ke akun Anda</h2>
-                    <p class="mb-4" style="color: rgba(43,38,32,.6);">Gunakan akun email terdaftar untuk melanjutkan.</p>
+                    <h2 class="font-display display-6 mb-2">Daftar sebagai anggota</h2>
+                    <p class="mb-4" style="color: rgba(43,38,32,.6);">Lengkapi data berikut untuk membuat kartu anggota perpustakaan.</p>
 
-                    <form action="#" method="POST" novalidate onsubmit="return false;">
+                    <form action="{{ route('register.store') }}" method="POST" novalidate>
+                        @csrf
+
                         <div class="mb-3">
-                            <label for="email" class="form-label-custom d-block">Email</label>
-                            <input type="text" id="email" name="email" class="form-control input-classic" placeholder="nama@sman1mekarsari.sch.id" required autofocus>
+                            <label for="nama" class="form-label-custom d-block">Nama Lengkap</label>
+                            <input type="text" id="nama" name="nama" class="form-control input-classic" placeholder="Nama sesuai identitas sekolah" value="{{ old('nama') }}" required autofocus>
+                            @error('nama')
+                                <p class="text-danger small mt-1 mb-0">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="mb-1">
+                                <label for="no_induk" class="form-label-custom d-block">NIS / NIP</label>
+                                <input type="text" id="no_induk" name="no_induk" class="form-control input-classic" placeholder="Nomor induk" value="{{ old('no_induk') }}" required>
+                                @error('no_induk')
+                                    <p class="text-danger small mt-1 mb-0">{{ $message }}</p>
+                                @enderror
                         </div>
 
                         <div class="mb-3">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <label for="password" class="form-label-custom d-block mb-0">Kata Sandi</label>
-                                <a href="#" class="small link-accent">Lupa kata sandi?</a>
-                            </div>
-                            <div class="input-group-classic d-flex align-items-center mt-2">
-                                <input type="password" id="password" name="password" class="form-control" placeholder="Masukkan kata sandi" required>
+                            <label for="email" class="form-label-custom d-block">Email Sekolah</label>
+                            <input type="email" id="email" name="email" class="form-control input-classic" placeholder="nama@sman1mekarsari.sch.id" value="{{ old('email') }}" required>
+                            @error('email')
+                                <p class="text-danger small mt-1 mb-0">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="mb-1">
+                            <label for="password" class="form-label-custom d-block">Kata Sandi</label>
+                            <div class="input-group-classic d-flex align-items-center">
+                                <input type="password" id="password" name="password" class="form-control" placeholder="Minimal 8 karakter" required>
                                 <button type="button" class="btn-toggle" id="togglePassword" aria-label="Tampilkan kata sandi">
                                     <i class="bi bi-eye" id="toggleIcon"></i>
                                 </button>
                             </div>
+                            @error('password')
+                                <p class="text-danger small mt-1 mb-0">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <p class="password-hint mb-3">Gunakan kombinasi huruf dan angka agar akun lebih aman.</p>
+
+                        <div class="mb-4">
+                            <label for="password_confirmation" class="form-label-custom d-block">Konfirmasi Kata Sandi</label>
+                            <div class="input-group-classic d-flex align-items-center">
+                                <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" placeholder="Ulangi kata sandi" required>
+                            </div>
                         </div>
 
                         <div class="form-check mb-4">
-                            <input class="form-check-input" type="checkbox" id="remember" name="remember">
-                            <label class="form-check-label small" for="remember" style="color: rgba(43,38,32,.7);">
-                                Ingat saya di perangkat ini
+                            <input class="form-check-input" type="checkbox" id="terms" name="terms" required>
+                            <label class="form-check-label small" for="terms" style="color: rgba(43,38,32,.7);">
+                                Saya menyetujui <a href="#" class="link-accent">ketentuan peminjaman</a> perpustakaan.
                             </label>
                         </div>
 
-                        <button type="submit" class="btn btn-primary-custom w-100">Masuk</button>
+                        <button type="submit" class="btn btn-primary-custom w-100">Buat Akun</button>
                     </form>
 
                     <p class="text-center small mt-4 mb-0" style="color: rgba(43,38,32,.6);">
-                        Belum punya akun?
-                        <a href="{{ route('register.index') }}" class="link-accent">Daftar sebagai anggota</a>
+                        Sudah punya akun?
+                        <a href="{{ route('login.index') }}" class="link-accent">Masuk di sini</a>
                     </p>
                 </div>
             </div>
