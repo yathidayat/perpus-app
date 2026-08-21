@@ -306,14 +306,6 @@
                                 @enderror
                         </div>
 
-                        <div class="mb-3">
-                            <label for="email" class="form-label-custom d-block">Email Sekolah</label>
-                            <input type="email" id="email" name="email" class="form-control input-classic" placeholder="nama@sman1mekarsari.sch.id" value="{{ old('email') }}" required>
-                            @error('email')
-                                <p class="text-danger small mt-1 mb-0">{{ $message }}</p>
-                            @enderror
-                        </div>
-
                         <div class="mb-1">
                             <label for="password" class="form-label-custom d-block">Kata Sandi</label>
                             <div class="input-group-classic d-flex align-items-center">

@@ -22,7 +22,6 @@ class RegisterController extends Controller
         $validated = $request->validate([
             'nama'     => ['required', 'string', 'max:150'],
             'no_induk' => ['required', 'string', 'max:30', 'unique:users,no_induk'],
-            'email'    => ['required', 'email', 'max:150', 'unique:users,email'],
             'password' => ['required', 'string', 'min:8', 'confirmed'], // cocok dg password_confirmation
             'terms'    => ['accepted'],
         ]);
@@ -30,7 +29,6 @@ class RegisterController extends Controller
         $user = User::create([
             'role_id'  => null,
             'nama'     => $validated['nama'],
-            'email'    => $validated['email'],
             'password' => Hash::make($validated['password']),
             'no_induk' => $validated['no_induk'],
             'status'   => 'aktif',

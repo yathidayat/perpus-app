@@ -292,10 +292,15 @@
                     <h2 class="font-display display-6 mb-2">Masuk ke akun Anda</h2>
                     <p class="mb-4" style="color: rgba(43,38,32,.6);">Gunakan akun email terdaftar untuk melanjutkan.</p>
 
-                    <form action="#" method="POST" novalidate onsubmit="return false;">
-                        <div class="mb-3">
-                            <label for="email" class="form-label-custom d-block">Email</label>
-                            <input type="text" id="email" name="email" class="form-control input-classic" placeholder="nama@sman1mekarsari.sch.id" required autofocus>
+                    <form action="#" method="POST">
+                        @csrf
+                        <div class="mb-1">
+                            <label for="no_induk" class="form-label-custom d-block">NIS / NIP</label>
+                            <input type="text" id="no_induk" name="no_induk" class="form-control input-classic" 
+                                placeholder="Nomor induk" value="{{ old('no_induk') }}" required>
+                            @error('no_induk')
+                                <p class="text-danger small mt-1 mb-0">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div class="mb-3">
@@ -309,6 +314,9 @@
                                     <i class="bi bi-eye" id="toggleIcon"></i>
                                 </button>
                             </div>
+                            @error('password')
+                                <p class="text-danger small mt-1 mb-0">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div class="form-check mb-4">
