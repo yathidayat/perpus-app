@@ -296,7 +296,7 @@
                     <li class="nav-item"><a class="nav-link nav-link-custom" href="#faq">FAQ</a></li>
                 </ul>
                 <div class="d-flex flex-column flex-md-row gap-2 mt-3 mt-md-0">
-                    <a href="{{ route('login.index') }}" class="btn btn-outline-custom btn-sm px-4 py-2">Masuk</a>
+                    <a href="{{ route('login') }}" class="btn btn-outline-custom btn-sm px-4 py-2">Masuk</a>
                     <a href="{{ route('register.index') }}" class="btn btn-primary-custom btn-sm px-4 py-2">Daftar Anggota</a>
                 </div>
             </div>

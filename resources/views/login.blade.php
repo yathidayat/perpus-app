@@ -292,7 +292,7 @@
                     <h2 class="font-display display-6 mb-2">Masuk ke akun Anda</h2>
                     <p class="mb-4" style="color: rgba(43,38,32,.6);">Gunakan akun email terdaftar untuk melanjutkan.</p>
 
-                    <form action="#" method="POST">
+                    <form action="{{ route('login.login') }}" method="POST">
                         @csrf
                         <div class="mb-1">
                             <label for="no_induk" class="form-label-custom d-block">NIS / NIP</label>

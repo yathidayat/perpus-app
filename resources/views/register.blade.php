@@ -339,7 +339,7 @@
 
                     <p class="text-center small mt-4 mb-0" style="color: rgba(43,38,32,.6);">
                         Sudah punya akun?
-                        <a href="{{ route('login.index') }}" class="link-accent">Masuk di sini</a>
+                        <a href="{{ route('login') }}" class="link-accent">Masuk di sini</a>
                     </p>
                 </div>
             </div>
