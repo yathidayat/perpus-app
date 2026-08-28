@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MenuController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\RolesController;
 use Illuminate\Routing\RouteDependencyResolverTrait;
 use Illuminate\Support\Facades\Route;
 
@@ -25,4 +27,12 @@ Route::get('/register', [RegisterController::class, 'index'])->name('register.in
 Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 
 //dashboard
-Route::get('/dashboard', function(){return view('dashboard');})->middleware('auth')->name('dashboard');
+Route::get('/dashboard', function(){return view('page/dashboard');})->middleware('auth')->name('dashboard');
+
+//page menu
+Route::get('/menu', [MenuController::class, 'index'])->name('menu_index');
+Route::post('/menu', [MenuController::class, 'store'])->name('menu.store');
+
+//page roles
+Route::get('/roles', [RolesController::class, 'index'])->name('roles');
+Route::post('/roles', [RolesController::class, 'store'])->name('role.store');
